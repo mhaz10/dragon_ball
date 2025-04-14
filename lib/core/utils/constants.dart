@@ -1,0 +1,1 @@
+String kFavoriteCharacterBox = 'favorite_character_box';
