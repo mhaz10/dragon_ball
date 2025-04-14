@@ -7,34 +7,39 @@ class SearchCharactersCubit extends Cubit<SearchCharactersState> {
   final HomeRepo homeRepo;
   SearchCharactersCubit(this.homeRepo) : super(SearchCharactersInitial());
 
-
   List<Item> allCharacters = [];
+  List<Item> filteredCharacters = [];
   int page = 1;
   bool isLoading = false;
 
   Future<void> fetchAllCharacters() async {
-    emit(SearchCharactersLoading());
-
-    if (isLoading) return;
+    if (isLoading || page >= 6) return;
 
     isLoading = true;
 
-    var result = await homeRepo.fetchAllCharacters(page: page);
+    final result = await homeRepo.fetchAllCharacters(page: page);
     result.fold(
-          (failure) => emit(SearchCharactersFailure(failure.errorMessage)),
-          (charactersModel) {
-            if (charactersModel.items.isEmpty) {
-              emit(SearchCharactersLoading());
-            } else {
-              allCharacters.addAll(charactersModel.items);
-              isLoading = false;
-              if (page > 6) {
-                emit(SearchCharactersLoading());
-              }
-              page++;
-              emit(SearchCharactersSuccess());
-            }
-          }
+      (failure) {
+        emit(SearchCharactersFailure(failure.errorMessage));
+      },
+      (charactersModel) {
+        if (charactersModel.items.isNotEmpty) {
+          allCharacters.addAll(charactersModel.items);
+          page++;
+          emit(SearchCharactersSuccess(allCharacters));
+        }
+      },
     );
+
+    isLoading = false;
+  }
+
+  void searchCharacter(String query) {
+    final filteredCharacters =
+        allCharacters.where((character) {
+          final name = character.name?.toLowerCase() ?? '';
+          return name.contains(query.toLowerCase());
+        }).toList();
+    emit(SearchCharactersSuccess(filteredCharacters));
   }
 }

@@ -31,7 +31,6 @@ class _SearchViewBodyState extends State<SearchViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    List <Item> characters = context.read<SearchCharactersCubit>().allCharacters;
     return BlocConsumer<SearchCharactersCubit, SearchCharactersState>(
       builder: (context, state) {
         if (state is SearchCharactersSuccess) {
@@ -44,14 +43,23 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: CustomSearchTextField(),
+                      child: CustomSearchTextField(onChanged: (value) {
+                        context
+                            .read<SearchCharactersCubit>()
+                            .searchCharacter(value);
+
+                      },),
                     ),
                   ],
                 ),
               ),
 
               SliverToBoxAdapter(
-                child: CharactersGridView(characters: characters, crossAxisCount: 3, characterDetail: false,),
+                child: CharactersGridView(
+                  characters: state.characters,
+                  crossAxisCount: 3,
+                  characterDetail: false,
+                ),
               ),
             ],
           );
@@ -63,21 +71,27 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                 child: CustomSearchTextField(),
               ),
               Expanded(
-                  child: CharactersLoadingGridView(isCharacterDetail: false, crossAxisCount: 3,))
+                child: CharactersLoadingGridView(
+                  isCharacterDetail: false,
+                  crossAxisCount: 3,
+                ),
+              ),
             ],
           );
         }
-      }, listener: (BuildContext context, SearchCharactersState state) {
-      if (state is SearchCharactersFailure) {
-        ScaffoldMessenger.of(context).showSnackBar(
+      },
+      listener: (BuildContext context, SearchCharactersState state) {
+        if (state is SearchCharactersFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: CustomErrorWidget(errorMessage: state.errorMessage),
               behavior: SnackBarBehavior.floating,
               backgroundColor: Colors.transparent,
               elevation: 0,
-            ));
-      }
-    },
+            ),
+          );
+        }
+      },
     );
   }
 }
