@@ -12,8 +12,4 @@ final class SearchCharactersFailure extends SearchCharactersState {
   SearchCharactersFailure(this.errorMessage);
 }
 
-final class SearchCharactersSuccess extends SearchCharactersState {
-  final List<Item> characters;
-
-  SearchCharactersSuccess(this.characters);
-}
+final class SearchCharactersSuccess extends SearchCharactersState {}

@@ -1,3 +1,4 @@
+import 'package:dragon_ball/features/favorite/presentation/views/favorites_view.dart';
 import 'package:dragon_ball/features/home/presentation/views/character_details_view.dart';
 import 'package:dragon_ball/features/search/presentation/views/search_view.dart';
 import 'package:go_router/go_router.dart';
@@ -8,6 +9,7 @@ abstract class AppRouter {
   static const kHomeView = '/HomeView';
   static const kCharacterDetails = '/CharacterDetails';
   static const kSearchView = '/SearchView';
+  static const kFavoritesView = '/FavoritesView';
 
   static final router = GoRouter(
     routes: [
@@ -21,11 +23,15 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kCharacterDetails,
-        builder: (context, state) => CharacterDetailsView(id: state.extra as int,),
+        builder: (context, state) => CharacterDetailsView(id: state.extra as int),
       ),
       GoRoute(
         path: kSearchView,
         builder: (context, state) => SearchView(),
+      ),
+      GoRoute(
+        path: kFavoritesView,
+        builder: (context, state) => FavoritesView(),
       ),
     ],
   );

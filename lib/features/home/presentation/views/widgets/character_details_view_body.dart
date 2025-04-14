@@ -35,7 +35,6 @@ class CharacterDetailsViewBody extends StatelessWidget {
 
               SliverToBoxAdapter(
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 1.5,
                   padding: EdgeInsets.symmetric(horizontal: 18),
                   decoration: BoxDecoration(
                     color: Colors.grey[900],

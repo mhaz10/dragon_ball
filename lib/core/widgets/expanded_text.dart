@@ -19,8 +19,8 @@ class _ExpandedTextState extends State<ExpandedText> {
     super.initState();
 
     if (widget.text.length > 100) {
-      firstHalf = widget.text.substring(0, 50);
-      secondHalf = widget.text.substring(51, widget.text.length);
+      firstHalf = widget.text.substring(0, 100);
+      secondHalf = widget.text.substring(100, widget.text.length);
     } else {
       firstHalf = widget.text;
       secondHalf = '';
@@ -29,34 +29,28 @@ class _ExpandedTextState extends State<ExpandedText> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: flag?  firstHalf!.length.toDouble()+30 : widget.text.length.toDouble(),
-      child: Column(
-        children: [
-          secondHalf == '' ? Text(firstHalf!, style: Styles.textStyle16,) : Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          flag ? firstHalf! : (firstHalf! + secondHalf!),
+          style: Styles.textStyle16,
+        ),
+        if (secondHalf!.isNotEmpty)
+          InkWell(
+            onTap: () {
+              setState(() {
+                flag = !flag;
+              });
+            },
+            child: Row(
               children: [
-                flag ? Text( firstHalf!,  style: Styles.textStyle16,) : Expanded(child: Text(widget.text,  style: Styles.textStyle16,)),
-                SizedBox(height: 5,),
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      flag = !flag;
-                    });
-                  },
-                  child: Row(
-                    children: [
-                      Text(flag ? 'Show More' : 'Show Less', style: Styles.textStyle14,),
-                      Icon(flag ? Icons.arrow_drop_down_outlined : Icons.arrow_drop_up_outlined , color: Colors.amber)
-                    ],
-                  ),
-                )
+                Text(flag ? 'Show More' : 'Show Less', style: Styles.textStyle14),
+                Icon(flag ? Icons.arrow_drop_down_outlined : Icons.arrow_drop_up_outlined, color: Colors.amber),
               ],
             ),
           ),
-        ],
-      ),
+      ],
     );
   }
 }

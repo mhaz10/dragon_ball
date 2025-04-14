@@ -32,7 +32,7 @@ class SearchCharactersCubit extends Cubit<SearchCharactersState> {
                 emit(SearchCharactersLoading());
               }
               page++;
-              emit(SearchCharactersSuccess(allCharacters));
+              emit(SearchCharactersSuccess());
             }
           }
     );

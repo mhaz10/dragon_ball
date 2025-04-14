@@ -31,6 +31,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    List <Item> characters = context.read<SearchCharactersCubit>().allCharacters;
     return BlocConsumer<SearchCharactersCubit, SearchCharactersState>(
       builder: (context, state) {
         if (state is SearchCharactersSuccess) {
@@ -50,7 +51,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
               ),
 
               SliverToBoxAdapter(
-                child: CharactersGridView(characters: state.characters, crossAxisCount: 3, characterDetail: false,),
+                child: CharactersGridView(characters: characters, crossAxisCount: 3, characterDetail: false,),
               ),
             ],
           );

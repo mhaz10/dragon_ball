@@ -1,4 +1,45 @@
-class SingleCharacterModel {
+import 'package:hive/hive.dart';
+
+part 'single_character_model.g.dart';
+
+@HiveType(typeId: 0)
+class SingleCharacterModel extends HiveObject {
+  @HiveField(0)
+  int? id;
+
+  @HiveField(1)
+  String? name;
+
+  @HiveField(2)
+  String? ki;
+
+  @HiveField(3)
+  String? maxKi;
+
+  @HiveField(4)
+  String? race;
+
+  @HiveField(5)
+  String? gender;
+
+  @HiveField(6)
+  String? description;
+
+  @HiveField(7)
+  String? image;
+
+  @HiveField(8)
+  String? affiliation;
+
+  @HiveField(9)
+  dynamic deletedAt;
+
+  @HiveField(10)
+  OriginPlanet? originPlanet;
+
+  @HiveField(11)
+  List<Transformation> transformations;
+
   SingleCharacterModel({
     required this.id,
     required this.name,
@@ -13,19 +54,6 @@ class SingleCharacterModel {
     required this.originPlanet,
     required this.transformations,
   });
-
-  final int? id;
-  final String? name;
-  final String? ki;
-  final String? maxKi;
-  final String? race;
-  final String? gender;
-  final String? description;
-  final String? image;
-  final String? affiliation;
-  final dynamic deletedAt;
-  final OriginPlanet? originPlanet;
-  final List<Transformation> transformations;
 
   factory SingleCharacterModel.fromJson(Map<String, dynamic> json){
     return SingleCharacterModel(
@@ -43,10 +71,29 @@ class SingleCharacterModel {
       transformations: json["transformations"] == null ? [] : List<Transformation>.from(json["transformations"]!.map((x) => Transformation.fromJson(x))),
     );
   }
-
 }
 
-class OriginPlanet {
+
+@HiveType(typeId: 1)
+class OriginPlanet extends HiveObject {
+  @HiveField(0)
+  int? id;
+
+  @HiveField(1)
+  String? name;
+
+  @HiveField(2)
+  bool? isDestroyed;
+
+  @HiveField(3)
+  String? description;
+
+  @HiveField(4)
+  String? image;
+
+  @HiveField(5)
+  dynamic deletedAt;
+
   OriginPlanet({
     required this.id,
     required this.name,
@@ -55,13 +102,6 @@ class OriginPlanet {
     required this.image,
     required this.deletedAt,
   });
-
-  final int? id;
-  final String? name;
-  final bool? isDestroyed;
-  final String? description;
-  final String? image;
-  final dynamic deletedAt;
 
   factory OriginPlanet.fromJson(Map<String, dynamic> json){
     return OriginPlanet(
@@ -73,10 +113,26 @@ class OriginPlanet {
       deletedAt: json["deletedAt"],
     );
   }
-
 }
 
-class Transformation {
+
+@HiveType(typeId: 2)
+class Transformation extends HiveObject {
+  @HiveField(0)
+  int? id;
+
+  @HiveField(1)
+  String? name;
+
+  @HiveField(2)
+  String? image;
+
+  @HiveField(3)
+  String? ki;
+
+  @HiveField(4)
+  dynamic deletedAt;
+
   Transformation({
     required this.id,
     required this.name,
@@ -84,12 +140,6 @@ class Transformation {
     required this.ki,
     required this.deletedAt,
   });
-
-  final int? id;
-  final String? name;
-  final String? image;
-  final String? ki;
-  final dynamic deletedAt;
 
   factory Transformation.fromJson(Map<String, dynamic> json){
     return Transformation(
@@ -100,5 +150,4 @@ class Transformation {
       deletedAt: json["deletedAt"],
     );
   }
-
 }

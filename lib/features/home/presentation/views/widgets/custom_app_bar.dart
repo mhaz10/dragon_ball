@@ -13,7 +13,11 @@ class CustomAppBar extends StatelessWidget {
       padding: const EdgeInsets.only(left: 24, right: 24, top: 40, bottom: 20),
       child: Row(
         children: [
-          CustomImage(image: 'assets/images/dragon_ball_logo (1).png', height: 55, width: 55,),
+          InkWell(
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.kFavoritesView);
+              },
+              child: CustomImage(image: 'assets/images/dragon_ball_logo (1).png', height: 55, width: 55,)),
           const Spacer(),
           IconButton(onPressed: () {
             GoRouter.of(context).push(AppRouter.kSearchView);
