@@ -1,4 +1,3 @@
-import 'package:dragon_ball/core/models/single_character_model.dart';
 import 'package:dragon_ball/core/widgets/expanded_text.dart';
 import 'package:dragon_ball/features/home/presentation/manger/single_character/single_character_cubit.dart';
 import 'package:dragon_ball/features/home/presentation/views/widgets/transformations_list_view.dart';

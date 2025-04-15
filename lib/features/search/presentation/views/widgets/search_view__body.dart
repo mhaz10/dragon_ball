@@ -1,4 +1,3 @@
-import 'package:dragon_ball/core/models/chaaracters_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/custom_error_widget.dart';

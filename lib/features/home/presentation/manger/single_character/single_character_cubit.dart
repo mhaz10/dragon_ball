@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dragon_ball/core/models/single_character_model.dart';
-import 'package:dragon_ball/core/utils/constants.dart';
 import 'package:dragon_ball/features/home/data/repos/home_repo.dart';
-import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
 
 part 'single_character_state.dart';

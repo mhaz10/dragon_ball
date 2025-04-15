@@ -1,5 +1,4 @@
 import 'package:dragon_ball/core/models/single_character_model.dart';
-import 'package:dragon_ball/features/home/presentation/manger/single_character/single_character_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
