@@ -1,4 +1,5 @@
 import 'package:dragon_ball/core/utils/%20service_locator.dart';
+import 'package:dragon_ball/features/favorite/manger/favorite_characters/favorite_characters_cubit.dart';
 import 'package:dragon_ball/features/home/data/repos/home_repo_implementation%20.dart';
 import 'package:dragon_ball/features/home/presentation/manger/add_favorite_character/add_favorite_character_cubit.dart';
 import 'package:dragon_ball/features/home/presentation/manger/single_character/single_character_cubit.dart';

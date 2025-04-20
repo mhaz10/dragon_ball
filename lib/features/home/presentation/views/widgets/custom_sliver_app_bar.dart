@@ -1,4 +1,5 @@
 import 'package:dragon_ball/core/models/single_character_model.dart';
+import 'package:dragon_ball/features/favorite/manger/favorite_characters/favorite_characters_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -54,8 +55,8 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
               CustomAppIcon(
                 icon: Icons.close,
                 onPressed: () {
-                  GoRouter.of(context).pop();
-                },
+                  GoRouter.of(context).pop(true);
+                  },
                 color: Colors.white,
               ),
               CustomAppIcon(

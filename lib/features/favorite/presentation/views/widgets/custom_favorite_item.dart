@@ -34,10 +34,15 @@ class CustomFavoriteItem extends StatelessWidget {
 
       builder: (context, state) {
         return InkWell(
-          onTap: () {
-            GoRouter.of(
+          onTap: ()async {
+            var result= await GoRouter.of(
               context,
             ).push(AppRouter.kCharacterDetails, extra: characterModel.id);
+            if (result != null) {
+              BlocProvider.of<FavoriteCharactersCubit>(
+                context,
+              ).fetchFavoriteCharacters();
+            }
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
